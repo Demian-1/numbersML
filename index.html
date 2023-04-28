@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Numeros</title>
+</head>
+<body>
+    <button id="eraseButton">Erase weights</button>
+    <button id="showButton">Show weights</button>
+    <br>
+    <br>
+
+    
+    <!-- <script src="main.js"></script> -->
+    <script type="text/javascript">
+
+        var buttons = [400];
+        var weights = [400];
+        console.log(buttons);
+        const eraseButton = document.getElementById("eraseButton");
+        eraseButton.addEventListener("click",eraseWeights);
+        function eraseWeights(){
+            for(var i = 0; i<400; i++){
+                weights[i]=0;
+            }
+            showWeights();
+        }
+
+        const showButton = document.getElementById("showButton");
+        showButton.addEventListener("click", showWeights);
+
+        function showWeights(){
+            var p = document.getElementById("wText");
+            var str = weights.toString();
+            p.innerHTML = str;
+        }
+
+
+        const hola = (event) => {
+            // highlight the mouseenter target
+            event.target.style.backgroundColor = "purple";
+
+            // reset the color after a short delay
+            setTimeout(() => {
+            event.target.style.backgroundColor = "";
+            }, 500);
+        };
+
+        function gengrid()
+        {
+            var i=0, fila=1;
+            var num_stud=400;
+            var newButton;
+            var buttonIdName;
+            var newBr;
+            for(i=1;i<=num_stud;i++){
+                newButton = document.createElement('button');
+                buttonIdName = ''+i;
+                newButton.setAttribute('id',buttonIdName);
+                // newButton.innerHTML ='<div id="box'+i+'">Testing 123</div>';
+                document.body.appendChild(newButton);
+                if((i%20)==0){
+                    // console.log(`Fila: ${fila}`);
+                    // fila++;
+                    newBr = document.createElement('br');
+                    document.body.appendChild(newBr);
+                }
+            }
+            var p = document.createElement('p');
+            p.setAttribute("id", "wText");
+            document.body.appendChild(document.createElement('br'));
+            document.body.appendChild(p);
+        }
+
+        function readButtons(){
+            for (var i = 0; i < 400; i++) {
+                weights[i] = 0;
+                buttons[i] = document.getElementById(""+(i+1));
+                buttons[i].addEventListener(
+                    "mouseenter",
+                    (event) => {
+                        // highlight the mouseenter target
+                        event.target.style.backgroundColor = "purple";
+
+                        // reset the color after a short delay
+                        setTimeout(() => {
+                        event.target.style.backgroundColor = "";
+                        }, 500);
+
+                        weights[(parseInt(event.target.id)-1)]++;
+                        console.log(weights);
+                    },
+                    false
+                );
+            }
+        }
+        
+        window.onload = function () {
+            gengrid();
+            readButtons();
+        }
+    </script>
+</body>
+</html>
