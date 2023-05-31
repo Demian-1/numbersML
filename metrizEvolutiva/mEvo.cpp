@@ -108,7 +108,7 @@ int main(){
         }
     }
 
-    cout<<endl<<"MATRIZ EVO: "<<endl;   printMat(mat, words.size());
+    //cout<<endl<<"MATRIZ EVO: "<<endl;   printMat(mat, words.size());
     
     // MATRIZ ACUMULATIVA
     int acum;
@@ -124,11 +124,44 @@ int main(){
         resAcum.push_back(acum);
     }
 
-    cout<<endl<<"MATRIZ ACUM: "<<endl;   printMat(matAcum, words.size());
+    //cout<<endl<<"MATRIZ ACUM: "<<endl;   printMat(matAcum, words.size());
     cout<<"Resultados Acumulativos: "<<endl;
     for(int i=0;i<resAcum.size();i++){
         cout<<resAcum[i]<<' ';
     }
+
+    
+    int ranWord = 1 + (rand()%(words.size()));
+    //ranWord = 1 + (rand()%(words.size()));
+    ranWord = 0;
+    int actWord, randNum;
+    int numWordsGen=0;
+    while(numWordsGen!=-1){
+        cout<<"\nCuantas palabras quieres generar: "; 
+        cin>>numWordsGen;
+
+        // for(int i=0; i<numWordsGen; i++){
+        //     ranWord = 1 + (rand()%(words.size()));
+        //     cout<<"w"<<i<<": "<<ranWord<<endl;
+        // }
+        // cout<<words[1]<<": ....."<< endl;
+        // cout<<ranWord<<": ....."<< endl;
+        
+        cout<<words[0]<<" ";
+        actWord = 0;
+        for(int i=1; i<numWordsGen; i++){
+            randNum = 1 + (rand()%(resAcum[actWord]));
+            for(int j=0;j<resAcum.size();j++){
+                if(matAcum[actWord][j]>=randNum){
+                    actWord = j;
+                    break;
+                }
+            }
+            cout<<words[actWord]<<" ";
+        }
+
+    }
+    
 
     
 
